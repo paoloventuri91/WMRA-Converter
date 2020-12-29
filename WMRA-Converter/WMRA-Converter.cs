@@ -30,5 +30,21 @@ namespace WMRA_Converter
             _options.InputFile = file.FileName;
             FileSelectionTextBox.Text = _options.InputFile;
         }
+
+        private void FileExportButton_Click(object sender, System.EventArgs e)
+        {
+            var saveFileDialog1 = new SaveFileDialog
+            {
+                Filter = @"CSV files (*.csv)|*.csv|All files (*.*)|*.*",
+                FilterIndex = 1,
+                RestoreDirectory = true
+            };
+            
+            if (saveFileDialog1.ShowDialog() != DialogResult.OK)
+                return;
+
+            _options.OutputFile = saveFileDialog1.FileName;
+            FileExportTextBox.Text = _options.OutputFile;
+        }
     }
 }

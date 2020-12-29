@@ -8,6 +8,8 @@ namespace WMRA_Converter
 
         public String InputFile { get; set; }
 
+        public String OutputFile { get; set; }
+
         #endregion
 
     }
