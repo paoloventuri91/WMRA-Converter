@@ -7,7 +7,7 @@ namespace WMRA_Converter
     {
         #region Fields
 
-        private ConverterOptions _options;
+        private readonly ConverterOptions _options;
 
         #endregion
 
@@ -17,18 +17,27 @@ namespace WMRA_Converter
             _options = new ConverterOptions();
         }
 
+        private void LoadScreenOptions()
+        {
+            FileSelectionTextBox.Text = _options.InputFile;
+            FileExportTextBox.Text = _options.OutputFile;
+        }
+
         private void FileSelectionButton_Click(object sender, System.EventArgs e)
         {
             var file = new OpenFileDialog
             {
-                InitialDirectory = Path.GetDirectoryName(Application.ExecutablePath)
+                InitialDirectory = Path.GetDirectoryName(Application.ExecutablePath),
+                Filter = @"CSV files (*.csv)|*.csv|All files (*.*)|*.*",
+                FilterIndex = 1,
+                RestoreDirectory = true
             };
 
             if (file.ShowDialog() != DialogResult.OK)
                 return;
 
             _options.InputFile = file.FileName;
-            FileSelectionTextBox.Text = _options.InputFile;
+            LoadScreenOptions();
         }
 
         private void FileExportButton_Click(object sender, System.EventArgs e)
@@ -44,7 +53,18 @@ namespace WMRA_Converter
                 return;
 
             _options.OutputFile = saveFileDialog1.FileName;
-            FileExportTextBox.Text = _options.OutputFile;
+            LoadScreenOptions();
+        }
+
+        private void SaveOptionsButton_Click(object sender, System.EventArgs e)
+        {
+            _options.Save();
+        }
+
+        private void LoadOptionsButton_Click(object sender, System.EventArgs e)
+        {
+            _options.Load();
+            LoadScreenOptions();
         }
     }
 }

@@ -28,21 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.FileSelecionLabel = new System.Windows.Forms.Label();
             this.FileSelectionTextBox = new System.Windows.Forms.TextBox();
             this.FileSelectionButton = new System.Windows.Forms.Button();
             this.FileExportButton = new System.Windows.Forms.Button();
             this.FileExportTextBox = new System.Windows.Forms.TextBox();
             this.FileExportLabel = new System.Windows.Forms.Label();
+            this.LoadOptionsButton = new System.Windows.Forms.Button();
+            this.SaveOptionsButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
-            // 
-            // imageList1
-            // 
-            this.imageList1.ColorDepth = System.Windows.Forms.ColorDepth.Depth8Bit;
-            this.imageList1.ImageSize = new System.Drawing.Size(16, 16);
-            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
             // 
             // FileSelecionLabel
             // 
@@ -102,11 +96,35 @@
             this.FileExportLabel.TabIndex = 3;
             this.FileExportLabel.Text = "File da esportare";
             // 
+            // LoadOptionsButton
+            // 
+            this.LoadOptionsButton.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LoadOptionsButton.Location = new System.Drawing.Point(12, 401);
+            this.LoadOptionsButton.Name = "LoadOptionsButton";
+            this.LoadOptionsButton.Size = new System.Drawing.Size(117, 37);
+            this.LoadOptionsButton.TabIndex = 6;
+            this.LoadOptionsButton.Text = "Carica Opzioni";
+            this.LoadOptionsButton.UseVisualStyleBackColor = true;
+            this.LoadOptionsButton.Click += new System.EventHandler(this.LoadOptionsButton_Click);
+            // 
+            // SaveOptionsButton
+            // 
+            this.SaveOptionsButton.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SaveOptionsButton.Location = new System.Drawing.Point(135, 401);
+            this.SaveOptionsButton.Name = "SaveOptionsButton";
+            this.SaveOptionsButton.Size = new System.Drawing.Size(117, 37);
+            this.SaveOptionsButton.TabIndex = 7;
+            this.SaveOptionsButton.Text = "Salva Opzioni";
+            this.SaveOptionsButton.UseVisualStyleBackColor = true;
+            this.SaveOptionsButton.Click += new System.EventHandler(this.SaveOptionsButton_Click);
+            // 
             // WmraConverter
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(732, 450);
+            this.Controls.Add(this.SaveOptionsButton);
+            this.Controls.Add(this.LoadOptionsButton);
             this.Controls.Add(this.FileExportButton);
             this.Controls.Add(this.FileExportTextBox);
             this.Controls.Add(this.FileExportLabel);
@@ -121,14 +139,14 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.ImageList imageList1;
         private System.Windows.Forms.Label FileSelecionLabel;
         private System.Windows.Forms.TextBox FileSelectionTextBox;
         private System.Windows.Forms.Button FileSelectionButton;
         private System.Windows.Forms.Button FileExportButton;
         private System.Windows.Forms.TextBox FileExportTextBox;
         private System.Windows.Forms.Label FileExportLabel;
+        private System.Windows.Forms.Button LoadOptionsButton;
+        private System.Windows.Forms.Button SaveOptionsButton;
     }
 }
 
