@@ -40,8 +40,11 @@
             this.FromSheetLabel = new System.Windows.Forms.Label();
             this.ToSheetLabel = new System.Windows.Forms.Label();
             this.ToSheetUpDown = new System.Windows.Forms.NumericUpDown();
+            this.FromRowUpDown = new System.Windows.Forms.NumericUpDown();
+            this.FromRowLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.FromSheetUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ToSheetUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.FromRowUpDown)).BeginInit();
             this.SuspendLayout();
             // 
             // FileSelecionLabel
@@ -156,7 +159,7 @@
             // 
             this.ToSheetLabel.AutoSize = true;
             this.ToSheetLabel.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ToSheetLabel.Location = new System.Drawing.Point(131, 124);
+            this.ToSheetLabel.Location = new System.Drawing.Point(163, 124);
             this.ToSheetLabel.Name = "ToSheetLabel";
             this.ToSheetLabel.Size = new System.Drawing.Size(66, 19);
             this.ToSheetLabel.TabIndex = 11;
@@ -164,7 +167,7 @@
             // 
             // ToSheetUpDown
             // 
-            this.ToSheetUpDown.Location = new System.Drawing.Point(135, 146);
+            this.ToSheetUpDown.Location = new System.Drawing.Point(163, 146);
             this.ToSheetUpDown.Minimum = new decimal(new int[] {
             1,
             0,
@@ -180,11 +183,41 @@
             0});
             this.ToSheetUpDown.ValueChanged += new System.EventHandler(this.ToSheetUpDown_ValueChanged);
             // 
+            // FromRowUpDown
+            // 
+            this.FromRowUpDown.Location = new System.Drawing.Point(325, 146);
+            this.FromRowUpDown.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.FromRowUpDown.Name = "FromRowUpDown";
+            this.FromRowUpDown.Size = new System.Drawing.Size(74, 20);
+            this.FromRowUpDown.TabIndex = 14;
+            this.FromRowUpDown.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.FromRowUpDown.ValueChanged += new System.EventHandler(this.FromRowUpDown_ValueChanged);
+            // 
+            // FromRowLabel
+            // 
+            this.FromRowLabel.AutoSize = true;
+            this.FromRowLabel.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FromRowLabel.Location = new System.Drawing.Point(325, 124);
+            this.FromRowLabel.Name = "FromRowLabel";
+            this.FromRowLabel.Size = new System.Drawing.Size(251, 19);
+            this.FromRowLabel.TabIndex = 13;
+            this.FromRowLabel.Text = "Dalla riga (escludere le intestazioni)";
+            // 
             // WmraConverter
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(732, 450);
+            this.Controls.Add(this.FromRowUpDown);
+            this.Controls.Add(this.FromRowLabel);
             this.Controls.Add(this.ToSheetUpDown);
             this.Controls.Add(this.ToSheetLabel);
             this.Controls.Add(this.FromSheetLabel);
@@ -201,6 +234,7 @@
             this.Text = "WMRA Converter";
             ((System.ComponentModel.ISupportInitialize)(this.FromSheetUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ToSheetUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.FromRowUpDown)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -219,6 +253,8 @@
         private System.Windows.Forms.Label FromSheetLabel;
         private System.Windows.Forms.Label ToSheetLabel;
         private System.Windows.Forms.NumericUpDown ToSheetUpDown;
+        private System.Windows.Forms.NumericUpDown FromRowUpDown;
+        private System.Windows.Forms.Label FromRowLabel;
     }
 }
 

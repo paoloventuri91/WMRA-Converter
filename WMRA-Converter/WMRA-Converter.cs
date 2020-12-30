@@ -24,6 +24,7 @@ namespace WMRA_Converter
             FileExportTextBox.Text = _options.OutputFile;
             FromSheetUpDown.Value = _options.FromSheetNumber;
             ToSheetUpDown.Value = _options.ToSheetNumber;
+            FromRowUpDown.Value = _options.FromRow;
         }
 
         private void FileSelectionButton_Click(object sender, System.EventArgs e)
@@ -88,6 +89,11 @@ namespace WMRA_Converter
         private void ToSheetUpDown_ValueChanged(object sender, EventArgs e)
         {
             _options.ToSheetNumber = Convert.ToInt32(ToSheetUpDown.Value);
+        }
+
+        private void FromRowUpDown_ValueChanged(object sender, EventArgs e)
+        {
+            _options.FromRow = Convert.ToInt32(FromRowUpDown.Value);
         }
     }
 }

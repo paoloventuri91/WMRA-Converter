@@ -18,7 +18,9 @@ namespace WMRA_Converter
         public Int32 FromSheetNumber { get; set; }
 
         public Int32 ToSheetNumber { get; set; }
-        
+
+        public Int32 FromRow { get; set; }
+
         #endregion
 
         public ConverterOptions()
@@ -27,6 +29,7 @@ namespace WMRA_Converter
             OutputFile = String.Empty;
             FromSheetNumber = 1;
             ToSheetNumber = 1;
+            FromRow = 1;
         }
 
         #region Public Methods
