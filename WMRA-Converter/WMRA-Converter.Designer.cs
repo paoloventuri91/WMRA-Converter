@@ -36,6 +36,12 @@
             this.FileExportLabel = new System.Windows.Forms.Label();
             this.LoadOptionsButton = new System.Windows.Forms.Button();
             this.SaveOptionsButton = new System.Windows.Forms.Button();
+            this.FromSheetUpDown = new System.Windows.Forms.NumericUpDown();
+            this.FromSheetLabel = new System.Windows.Forms.Label();
+            this.ToSheetLabel = new System.Windows.Forms.Label();
+            this.ToSheetUpDown = new System.Windows.Forms.NumericUpDown();
+            ((System.ComponentModel.ISupportInitialize)(this.FromSheetUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ToSheetUpDown)).BeginInit();
             this.SuspendLayout();
             // 
             // FileSelecionLabel
@@ -118,11 +124,71 @@
             this.SaveOptionsButton.UseVisualStyleBackColor = true;
             this.SaveOptionsButton.Click += new System.EventHandler(this.SaveOptionsButton_Click);
             // 
+            // FromSheetUpDown
+            // 
+            this.FromSheetUpDown.Location = new System.Drawing.Point(16, 146);
+            this.FromSheetUpDown.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.FromSheetUpDown.Name = "FromSheetUpDown";
+            this.FromSheetUpDown.Size = new System.Drawing.Size(74, 20);
+            this.FromSheetUpDown.TabIndex = 9;
+            this.FromSheetUpDown.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.FromSheetUpDown.ValueChanged += new System.EventHandler(this.FromSheetUpDown_ValueChanged);
+            // 
+            // FromSheetLabel
+            // 
+            this.FromSheetLabel.AutoSize = true;
+            this.FromSheetLabel.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FromSheetLabel.Location = new System.Drawing.Point(12, 124);
+            this.FromSheetLabel.Name = "FromSheetLabel";
+            this.FromSheetLabel.Size = new System.Drawing.Size(74, 19);
+            this.FromSheetLabel.TabIndex = 10;
+            this.FromSheetLabel.Text = "Dal foglio";
+            // 
+            // ToSheetLabel
+            // 
+            this.ToSheetLabel.AutoSize = true;
+            this.ToSheetLabel.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ToSheetLabel.Location = new System.Drawing.Point(131, 124);
+            this.ToSheetLabel.Name = "ToSheetLabel";
+            this.ToSheetLabel.Size = new System.Drawing.Size(66, 19);
+            this.ToSheetLabel.TabIndex = 11;
+            this.ToSheetLabel.Text = "Al foglio";
+            // 
+            // ToSheetUpDown
+            // 
+            this.ToSheetUpDown.Location = new System.Drawing.Point(135, 146);
+            this.ToSheetUpDown.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.ToSheetUpDown.Name = "ToSheetUpDown";
+            this.ToSheetUpDown.Size = new System.Drawing.Size(74, 20);
+            this.ToSheetUpDown.TabIndex = 12;
+            this.ToSheetUpDown.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.ToSheetUpDown.ValueChanged += new System.EventHandler(this.ToSheetUpDown_ValueChanged);
+            // 
             // WmraConverter
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(732, 450);
+            this.Controls.Add(this.ToSheetUpDown);
+            this.Controls.Add(this.ToSheetLabel);
+            this.Controls.Add(this.FromSheetLabel);
+            this.Controls.Add(this.FromSheetUpDown);
             this.Controls.Add(this.SaveOptionsButton);
             this.Controls.Add(this.LoadOptionsButton);
             this.Controls.Add(this.FileExportButton);
@@ -133,6 +199,8 @@
             this.Controls.Add(this.FileSelecionLabel);
             this.Name = "WmraConverter";
             this.Text = "WMRA Converter";
+            ((System.ComponentModel.ISupportInitialize)(this.FromSheetUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ToSheetUpDown)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -147,6 +215,10 @@
         private System.Windows.Forms.Label FileExportLabel;
         private System.Windows.Forms.Button LoadOptionsButton;
         private System.Windows.Forms.Button SaveOptionsButton;
+        private System.Windows.Forms.NumericUpDown FromSheetUpDown;
+        private System.Windows.Forms.Label FromSheetLabel;
+        private System.Windows.Forms.Label ToSheetLabel;
+        private System.Windows.Forms.NumericUpDown ToSheetUpDown;
     }
 }
 

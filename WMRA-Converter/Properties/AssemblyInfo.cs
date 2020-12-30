@@ -8,9 +8,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("WMRA-Converter")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("CompuGroup Medical SE")]
 [assembly: AssemblyProduct("WMRA-Converter")]
-[assembly: AssemblyCopyright("Copyright © CompuGroup Medical SE 2020")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Windows.Forms;
 
 namespace WMRA_Converter
@@ -21,6 +22,8 @@ namespace WMRA_Converter
         {
             FileSelectionTextBox.Text = _options.InputFile;
             FileExportTextBox.Text = _options.OutputFile;
+            FromSheetUpDown.Value = _options.FromSheetNumber;
+            ToSheetUpDown.Value = _options.ToSheetNumber;
         }
 
         private void FileSelectionButton_Click(object sender, System.EventArgs e)
@@ -58,6 +61,16 @@ namespace WMRA_Converter
 
         private void SaveOptionsButton_Click(object sender, System.EventArgs e)
         {
+            try
+            {
+                _options.CheckOptions();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, @"Attenzione", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            
             _options.Save();
         }
 
@@ -65,6 +78,16 @@ namespace WMRA_Converter
         {
             _options.Load();
             LoadScreenOptions();
+        }
+
+        private void FromSheetUpDown_ValueChanged(object sender, EventArgs e)
+        {
+            _options.FromSheetNumber = Convert.ToInt32(FromSheetUpDown.Value);
+        }
+
+        private void ToSheetUpDown_ValueChanged(object sender, EventArgs e)
+        {
+            _options.ToSheetNumber = Convert.ToInt32(ToSheetUpDown.Value);
         }
     }
 }

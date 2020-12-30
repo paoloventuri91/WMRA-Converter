@@ -15,8 +15,20 @@ namespace WMRA_Converter
 
         public String OutputFile { get; set; }
 
-        #endregion
+        public Int32 FromSheetNumber { get; set; }
+
+        public Int32 ToSheetNumber { get; set; }
         
+        #endregion
+
+        public ConverterOptions()
+        {
+            InputFile = String.Empty;
+            OutputFile = String.Empty;
+            FromSheetNumber = 1;
+            ToSheetNumber = 1;
+        }
+
         #region Public Methods
 
         public void Save()
@@ -67,9 +79,13 @@ namespace WMRA_Converter
             }
         }
 
-
+        public void CheckOptions()
+        {
+            if(ToSheetNumber < FromSheetNumber)
+                throw new Exception("Il foglio finale non può essere minore di quello iniziale");
+        }
+        
         #endregion
-
-
+        
     }
 }
