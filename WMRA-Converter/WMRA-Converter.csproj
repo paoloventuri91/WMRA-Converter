@@ -50,6 +50,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ConverterOptions.cs" />
+    <Compile Include="ColumnDataControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ColumnDataControl.Designer.cs">
+      <DependentUpon>ColumnDataControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TypeComboBoxItem.cs" />
     <Compile Include="WMRA-Converter.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -67,6 +74,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="ColumnDataControl.resx">
+      <DependentUpon>ColumnDataControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="WMRA-Converter.resx">
       <DependentUpon>WMRA-Converter.cs</DependentUpon>
     </EmbeddedResource>
@@ -83,6 +93,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\WMRA-Core\WMRA-Core.csproj">
+      <Project>{cfd702e9-02f2-4a3b-a1bc-b595f5f54843}</Project>
+      <Name>WMRA-Core</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

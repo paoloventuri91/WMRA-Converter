@@ -42,6 +42,9 @@
             this.ToSheetUpDown = new System.Windows.Forms.NumericUpDown();
             this.FromRowUpDown = new System.Windows.Forms.NumericUpDown();
             this.FromRowLabel = new System.Windows.Forms.Label();
+            this.ColumnDataLabel = new System.Windows.Forms.Label();
+            this.NewColumnDataButton = new System.Windows.Forms.Button();
+            this.ColumnControlPanel = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.FromSheetUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ToSheetUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.FromRowUpDown)).BeginInit();
@@ -108,7 +111,7 @@
             // LoadOptionsButton
             // 
             this.LoadOptionsButton.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LoadOptionsButton.Location = new System.Drawing.Point(12, 401);
+            this.LoadOptionsButton.Location = new System.Drawing.Point(12, 480);
             this.LoadOptionsButton.Name = "LoadOptionsButton";
             this.LoadOptionsButton.Size = new System.Drawing.Size(117, 37);
             this.LoadOptionsButton.TabIndex = 6;
@@ -119,7 +122,7 @@
             // SaveOptionsButton
             // 
             this.SaveOptionsButton.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SaveOptionsButton.Location = new System.Drawing.Point(135, 401);
+            this.SaveOptionsButton.Location = new System.Drawing.Point(135, 480);
             this.SaveOptionsButton.Name = "SaveOptionsButton";
             this.SaveOptionsButton.Size = new System.Drawing.Size(117, 37);
             this.SaveOptionsButton.TabIndex = 7;
@@ -129,6 +132,7 @@
             // 
             // FromSheetUpDown
             // 
+            this.FromSheetUpDown.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FromSheetUpDown.Location = new System.Drawing.Point(16, 146);
             this.FromSheetUpDown.Minimum = new decimal(new int[] {
             1,
@@ -136,7 +140,7 @@
             0,
             0});
             this.FromSheetUpDown.Name = "FromSheetUpDown";
-            this.FromSheetUpDown.Size = new System.Drawing.Size(74, 20);
+            this.FromSheetUpDown.Size = new System.Drawing.Size(74, 23);
             this.FromSheetUpDown.TabIndex = 9;
             this.FromSheetUpDown.Value = new decimal(new int[] {
             1,
@@ -167,6 +171,7 @@
             // 
             // ToSheetUpDown
             // 
+            this.ToSheetUpDown.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ToSheetUpDown.Location = new System.Drawing.Point(163, 146);
             this.ToSheetUpDown.Minimum = new decimal(new int[] {
             1,
@@ -174,7 +179,7 @@
             0,
             0});
             this.ToSheetUpDown.Name = "ToSheetUpDown";
-            this.ToSheetUpDown.Size = new System.Drawing.Size(74, 20);
+            this.ToSheetUpDown.Size = new System.Drawing.Size(74, 23);
             this.ToSheetUpDown.TabIndex = 12;
             this.ToSheetUpDown.Value = new decimal(new int[] {
             1,
@@ -185,6 +190,7 @@
             // 
             // FromRowUpDown
             // 
+            this.FromRowUpDown.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FromRowUpDown.Location = new System.Drawing.Point(325, 146);
             this.FromRowUpDown.Minimum = new decimal(new int[] {
             1,
@@ -192,7 +198,7 @@
             0,
             0});
             this.FromRowUpDown.Name = "FromRowUpDown";
-            this.FromRowUpDown.Size = new System.Drawing.Size(74, 20);
+            this.FromRowUpDown.Size = new System.Drawing.Size(74, 23);
             this.FromRowUpDown.TabIndex = 14;
             this.FromRowUpDown.Value = new decimal(new int[] {
             1,
@@ -211,11 +217,42 @@
             this.FromRowLabel.TabIndex = 13;
             this.FromRowLabel.Text = "Dalla riga (escludere le intestazioni)";
             // 
+            // ColumnDataLabel
+            // 
+            this.ColumnDataLabel.AutoSize = true;
+            this.ColumnDataLabel.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ColumnDataLabel.Location = new System.Drawing.Point(12, 176);
+            this.ColumnDataLabel.Name = "ColumnDataLabel";
+            this.ColumnDataLabel.Size = new System.Drawing.Size(162, 19);
+            this.ColumnDataLabel.TabIndex = 15;
+            this.ColumnDataLabel.Text = "Composizione colonne";
+            // 
+            // NewColumnDataButton
+            // 
+            this.NewColumnDataButton.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.NewColumnDataButton.Location = new System.Drawing.Point(180, 173);
+            this.NewColumnDataButton.Name = "NewColumnDataButton";
+            this.NewColumnDataButton.Size = new System.Drawing.Size(146, 27);
+            this.NewColumnDataButton.TabIndex = 16;
+            this.NewColumnDataButton.Text = "Aggiungi colonna";
+            this.NewColumnDataButton.UseVisualStyleBackColor = true;
+            this.NewColumnDataButton.Click += new System.EventHandler(this.NewColumnDataButton_Click);
+            // 
+            // ColumnControlPanel
+            // 
+            this.ColumnControlPanel.Location = new System.Drawing.Point(12, 206);
+            this.ColumnControlPanel.Name = "ColumnControlPanel";
+            this.ColumnControlPanel.Size = new System.Drawing.Size(708, 268);
+            this.ColumnControlPanel.TabIndex = 17;
+            // 
             // WmraConverter
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(732, 450);
+            this.ClientSize = new System.Drawing.Size(732, 523);
+            this.Controls.Add(this.ColumnControlPanel);
+            this.Controls.Add(this.NewColumnDataButton);
+            this.Controls.Add(this.ColumnDataLabel);
             this.Controls.Add(this.FromRowUpDown);
             this.Controls.Add(this.FromRowLabel);
             this.Controls.Add(this.ToSheetUpDown);
@@ -255,6 +292,9 @@
         private System.Windows.Forms.NumericUpDown ToSheetUpDown;
         private System.Windows.Forms.NumericUpDown FromRowUpDown;
         private System.Windows.Forms.Label FromRowLabel;
+        private System.Windows.Forms.Label ColumnDataLabel;
+        private System.Windows.Forms.Button NewColumnDataButton;
+        private System.Windows.Forms.Panel ColumnControlPanel;
     }
 }
 

@@ -1,21 +1,30 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
+using System.Linq;
+using WMRA_Core;
 
 namespace WMRA_Converter
 {
     public partial class WmraConverter : Form
     {
+        #region Const
+        private const Int32 ColumnDataControlHeigth = 35;
+        #endregion
+
         #region Fields
-
         private readonly ConverterOptions _options;
-
+        private readonly List<ColumnDataControl> _columnDataControls;
+        private Int32 _columnCounter = 1;
         #endregion
 
         public WmraConverter()
         {
             InitializeComponent();
             _options = new ConverterOptions();
+            _columnDataControls = new List<ColumnDataControl>();
         }
 
         private void LoadScreenOptions()
@@ -25,9 +34,21 @@ namespace WMRA_Converter
             FromSheetUpDown.Value = _options.FromSheetNumber;
             ToSheetUpDown.Value = _options.ToSheetNumber;
             FromRowUpDown.Value = _options.FromRow;
+
+            _columnCounter = 1;
+
+            foreach (var columnDataControl in ColumnControlPanel.Controls.OfType<ColumnDataControl>())
+                ColumnControlPanel.Controls.Remove(columnDataControl);
+
+            foreach (var columnDataControl in _columnDataControls)
+                _columnDataControls.Remove(columnDataControl);
+
+            foreach (var optionsColumn in _options.Columns)
+                AddColumnDataControl(optionsColumn.Item1, optionsColumn.Item2);
+
         }
 
-        private void FileSelectionButton_Click(object sender, System.EventArgs e)
+        private void FileSelectionButton_Click(object sender, EventArgs e)
         {
             var file = new OpenFileDialog
             {
@@ -44,7 +65,7 @@ namespace WMRA_Converter
             LoadScreenOptions();
         }
 
-        private void FileExportButton_Click(object sender, System.EventArgs e)
+        private void FileExportButton_Click(object sender, EventArgs e)
         {
             var saveFileDialog1 = new SaveFileDialog
             {
@@ -60,10 +81,11 @@ namespace WMRA_Converter
             LoadScreenOptions();
         }
 
-        private void SaveOptionsButton_Click(object sender, System.EventArgs e)
+        private void SaveOptionsButton_Click(object sender, EventArgs e)
         {
             try
             {
+                LoadColumnOptions();
                 _options.CheckOptions();
             }
             catch (Exception ex)
@@ -75,7 +97,17 @@ namespace WMRA_Converter
             _options.Save();
         }
 
-        private void LoadOptionsButton_Click(object sender, System.EventArgs e)
+        private void LoadColumnOptions()
+        {
+            _options.Columns = new List<Tuple<Int32, CsvColumnType>>();
+
+            foreach (var columnDataControl in _columnDataControls)
+            {
+                _options.Columns.Add(new Tuple<Int32, CsvColumnType>(columnDataControl.Column, columnDataControl.Type));
+            }
+        }
+
+        private void LoadOptionsButton_Click(object sender, EventArgs e)
         {
             _options.Load();
             LoadScreenOptions();
@@ -94,6 +126,41 @@ namespace WMRA_Converter
         private void FromRowUpDown_ValueChanged(object sender, EventArgs e)
         {
             _options.FromRow = Convert.ToInt32(FromRowUpDown.Value);
+        }
+
+        private void NewColumnDataButton_Click(object sender, EventArgs e)
+        {
+            AddColumnDataControl();
+        }
+
+        private void AddColumnDataControl(Int32 column = 1, CsvColumnType type = CsvColumnType._)
+        {
+            var columnDataControl = new ColumnDataControl(column, type)
+            {
+                Location = new Point(0, ColumnDataControlHeigth * _columnDataControls.Count),
+                Visible = true,
+                Name = "cdc_" + _columnCounter
+            };
+
+            _columnCounter++;
+            ColumnControlPanel.Controls.Add(columnDataControl);
+            _columnDataControls.Add(columnDataControl);
+        }
+
+        public void RemoveColumnDataControl(ColumnDataControl sender)
+        {
+            ColumnControlPanel.Controls.Remove(sender);
+            _columnDataControls.Remove(sender);
+            var index = Int32.Parse(sender.Name.Split('_')[1]);
+
+            foreach (var columnDataControl in ColumnControlPanel.Controls.OfType<ColumnDataControl>())
+            {
+                var controlIndex = Int32.Parse(columnDataControl.Name.Split('_')[1]);
+                if (controlIndex <= index)
+                    continue;
+
+                columnDataControl.Top -= ColumnDataControlHeigth;
+            }
         }
     }
 }

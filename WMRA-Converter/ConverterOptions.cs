@@ -1,9 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Reflection;
 using System.Windows.Forms;
-using Newtonsoft.Json;  
+using Newtonsoft.Json;
+using WMRA_Core;
 
 namespace WMRA_Converter
 {
@@ -21,6 +22,8 @@ namespace WMRA_Converter
 
         public Int32 FromRow { get; set; }
 
+        public List<Tuple<Int32, CsvColumnType>> Columns { get; set; }
+
         #endregion
 
         public ConverterOptions()
@@ -30,6 +33,7 @@ namespace WMRA_Converter
             FromSheetNumber = 1;
             ToSheetNumber = 1;
             FromRow = 1;
+            Columns = new List<Tuple<Int32, CsvColumnType>>();
         }
 
         #region Public Methods
@@ -86,6 +90,20 @@ namespace WMRA_Converter
         {
             if(ToSheetNumber < FromSheetNumber)
                 throw new Exception("Il foglio finale non può essere minore di quello iniziale");
+
+            foreach (var column in Columns)
+            {
+                if(column.Item2 == CsvColumnType._)
+                    throw new Exception($"Tipologia vuota per la colonna {column.Item1}");
+
+                if (Columns.Count(c => c.Item1 == column.Item1) > 1)
+                    throw new Exception($"Più tipologie indicate per la colonna {column.Item1}");
+
+                if (Columns.Count(c => c.Item2 == column.Item2) > 1)
+                {
+                    throw new Exception($"La tipologia '{column.Item2}' è indicata in più colonne diverse");
+                }
+            }
         }
         
         #endregion
