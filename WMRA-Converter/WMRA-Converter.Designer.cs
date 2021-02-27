@@ -36,17 +36,12 @@
             this.FileExportLabel = new System.Windows.Forms.Label();
             this.LoadOptionsButton = new System.Windows.Forms.Button();
             this.SaveOptionsButton = new System.Windows.Forms.Button();
-            this.FromSheetUpDown = new System.Windows.Forms.NumericUpDown();
-            this.FromSheetLabel = new System.Windows.Forms.Label();
-            this.ToSheetLabel = new System.Windows.Forms.Label();
-            this.ToSheetUpDown = new System.Windows.Forms.NumericUpDown();
             this.FromRowUpDown = new System.Windows.Forms.NumericUpDown();
             this.FromRowLabel = new System.Windows.Forms.Label();
             this.ColumnDataLabel = new System.Windows.Forms.Label();
             this.NewColumnDataButton = new System.Windows.Forms.Button();
             this.ColumnControlPanel = new System.Windows.Forms.Panel();
-            ((System.ComponentModel.ISupportInitialize)(this.FromSheetUpDown)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ToSheetUpDown)).BeginInit();
+            this.ExecuteButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.FromRowUpDown)).BeginInit();
             this.SuspendLayout();
             // 
@@ -110,6 +105,7 @@
             // 
             // LoadOptionsButton
             // 
+            this.LoadOptionsButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.LoadOptionsButton.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LoadOptionsButton.Location = new System.Drawing.Point(12, 480);
             this.LoadOptionsButton.Name = "LoadOptionsButton";
@@ -121,6 +117,7 @@
             // 
             // SaveOptionsButton
             // 
+            this.SaveOptionsButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.SaveOptionsButton.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.SaveOptionsButton.Location = new System.Drawing.Point(135, 480);
             this.SaveOptionsButton.Name = "SaveOptionsButton";
@@ -130,68 +127,10 @@
             this.SaveOptionsButton.UseVisualStyleBackColor = true;
             this.SaveOptionsButton.Click += new System.EventHandler(this.SaveOptionsButton_Click);
             // 
-            // FromSheetUpDown
-            // 
-            this.FromSheetUpDown.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.FromSheetUpDown.Location = new System.Drawing.Point(16, 146);
-            this.FromSheetUpDown.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.FromSheetUpDown.Name = "FromSheetUpDown";
-            this.FromSheetUpDown.Size = new System.Drawing.Size(74, 23);
-            this.FromSheetUpDown.TabIndex = 9;
-            this.FromSheetUpDown.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.FromSheetUpDown.ValueChanged += new System.EventHandler(this.FromSheetUpDown_ValueChanged);
-            // 
-            // FromSheetLabel
-            // 
-            this.FromSheetLabel.AutoSize = true;
-            this.FromSheetLabel.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.FromSheetLabel.Location = new System.Drawing.Point(12, 124);
-            this.FromSheetLabel.Name = "FromSheetLabel";
-            this.FromSheetLabel.Size = new System.Drawing.Size(74, 19);
-            this.FromSheetLabel.TabIndex = 10;
-            this.FromSheetLabel.Text = "Dal foglio";
-            // 
-            // ToSheetLabel
-            // 
-            this.ToSheetLabel.AutoSize = true;
-            this.ToSheetLabel.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ToSheetLabel.Location = new System.Drawing.Point(163, 124);
-            this.ToSheetLabel.Name = "ToSheetLabel";
-            this.ToSheetLabel.Size = new System.Drawing.Size(66, 19);
-            this.ToSheetLabel.TabIndex = 11;
-            this.ToSheetLabel.Text = "Al foglio";
-            // 
-            // ToSheetUpDown
-            // 
-            this.ToSheetUpDown.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ToSheetUpDown.Location = new System.Drawing.Point(163, 146);
-            this.ToSheetUpDown.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.ToSheetUpDown.Name = "ToSheetUpDown";
-            this.ToSheetUpDown.Size = new System.Drawing.Size(74, 23);
-            this.ToSheetUpDown.TabIndex = 12;
-            this.ToSheetUpDown.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.ToSheetUpDown.ValueChanged += new System.EventHandler(this.ToSheetUpDown_ValueChanged);
-            // 
             // FromRowUpDown
             // 
             this.FromRowUpDown.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.FromRowUpDown.Location = new System.Drawing.Point(325, 146);
+            this.FromRowUpDown.Location = new System.Drawing.Point(16, 146);
             this.FromRowUpDown.Minimum = new decimal(new int[] {
             1,
             0,
@@ -211,7 +150,7 @@
             // 
             this.FromRowLabel.AutoSize = true;
             this.FromRowLabel.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.FromRowLabel.Location = new System.Drawing.Point(325, 124);
+            this.FromRowLabel.Location = new System.Drawing.Point(16, 124);
             this.FromRowLabel.Name = "FromRowLabel";
             this.FromRowLabel.Size = new System.Drawing.Size(251, 19);
             this.FromRowLabel.TabIndex = 13;
@@ -240,25 +179,37 @@
             // 
             // ColumnControlPanel
             // 
+            this.ColumnControlPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.ColumnControlPanel.Location = new System.Drawing.Point(12, 206);
             this.ColumnControlPanel.Name = "ColumnControlPanel";
             this.ColumnControlPanel.Size = new System.Drawing.Size(708, 268);
             this.ColumnControlPanel.TabIndex = 17;
+            // 
+            // ExecuteButton
+            // 
+            this.ExecuteButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.ExecuteButton.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ExecuteButton.Location = new System.Drawing.Point(603, 480);
+            this.ExecuteButton.Name = "ExecuteButton";
+            this.ExecuteButton.Size = new System.Drawing.Size(117, 37);
+            this.ExecuteButton.TabIndex = 18;
+            this.ExecuteButton.Text = "Elabora";
+            this.ExecuteButton.UseVisualStyleBackColor = true;
+            this.ExecuteButton.Click += new System.EventHandler(this.ExecuteButton_Click);
             // 
             // WmraConverter
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(732, 523);
+            this.Controls.Add(this.ExecuteButton);
             this.Controls.Add(this.ColumnControlPanel);
             this.Controls.Add(this.NewColumnDataButton);
             this.Controls.Add(this.ColumnDataLabel);
             this.Controls.Add(this.FromRowUpDown);
             this.Controls.Add(this.FromRowLabel);
-            this.Controls.Add(this.ToSheetUpDown);
-            this.Controls.Add(this.ToSheetLabel);
-            this.Controls.Add(this.FromSheetLabel);
-            this.Controls.Add(this.FromSheetUpDown);
             this.Controls.Add(this.SaveOptionsButton);
             this.Controls.Add(this.LoadOptionsButton);
             this.Controls.Add(this.FileExportButton);
@@ -269,8 +220,6 @@
             this.Controls.Add(this.FileSelecionLabel);
             this.Name = "WmraConverter";
             this.Text = "WMRA Converter";
-            ((System.ComponentModel.ISupportInitialize)(this.FromSheetUpDown)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ToSheetUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.FromRowUpDown)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -286,15 +235,12 @@
         private System.Windows.Forms.Label FileExportLabel;
         private System.Windows.Forms.Button LoadOptionsButton;
         private System.Windows.Forms.Button SaveOptionsButton;
-        private System.Windows.Forms.NumericUpDown FromSheetUpDown;
-        private System.Windows.Forms.Label FromSheetLabel;
-        private System.Windows.Forms.Label ToSheetLabel;
-        private System.Windows.Forms.NumericUpDown ToSheetUpDown;
         private System.Windows.Forms.NumericUpDown FromRowUpDown;
         private System.Windows.Forms.Label FromRowLabel;
         private System.Windows.Forms.Label ColumnDataLabel;
         private System.Windows.Forms.Button NewColumnDataButton;
         private System.Windows.Forms.Panel ColumnControlPanel;
+        private System.Windows.Forms.Button ExecuteButton;
     }
 }
 

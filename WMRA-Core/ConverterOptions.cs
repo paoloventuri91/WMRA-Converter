@@ -4,9 +4,8 @@ using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using Newtonsoft.Json;
-using WMRA_Core;
 
-namespace WMRA_Converter
+namespace WMRA_Core
 {
     public class ConverterOptions
     {
@@ -15,10 +14,6 @@ namespace WMRA_Converter
         public String InputFile { get; set; }
 
         public String OutputFile { get; set; }
-
-        public Int32 FromSheetNumber { get; set; }
-
-        public Int32 ToSheetNumber { get; set; }
 
         public Int32 FromRow { get; set; }
 
@@ -30,8 +25,6 @@ namespace WMRA_Converter
         {
             InputFile = String.Empty;
             OutputFile = String.Empty;
-            FromSheetNumber = 1;
-            ToSheetNumber = 1;
             FromRow = 1;
             Columns = new List<Tuple<Int32, CsvColumnType>>();
         }
@@ -88,9 +81,6 @@ namespace WMRA_Converter
 
         public void CheckOptions()
         {
-            if(ToSheetNumber < FromSheetNumber)
-                throw new Exception("Il foglio finale non può essere minore di quello iniziale");
-
             foreach (var column in Columns)
             {
                 if(column.Item2 == CsvColumnType._)

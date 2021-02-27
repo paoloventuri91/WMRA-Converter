@@ -31,21 +31,17 @@ namespace WMRA_Converter
         {
             FileSelectionTextBox.Text = _options.InputFile;
             FileExportTextBox.Text = _options.OutputFile;
-            FromSheetUpDown.Value = _options.FromSheetNumber;
-            ToSheetUpDown.Value = _options.ToSheetNumber;
             FromRowUpDown.Value = _options.FromRow;
 
             _columnCounter = 1;
 
+            _columnDataControls.RemoveAll(c => true);
+
             foreach (var columnDataControl in ColumnControlPanel.Controls.OfType<ColumnDataControl>())
                 ColumnControlPanel.Controls.Remove(columnDataControl);
-
-            foreach (var columnDataControl in _columnDataControls)
-                _columnDataControls.Remove(columnDataControl);
-
+                        
             foreach (var optionsColumn in _options.Columns)
                 AddColumnDataControl(optionsColumn.Item1, optionsColumn.Item2);
-
         }
 
         private void FileSelectionButton_Click(object sender, EventArgs e)
@@ -83,17 +79,7 @@ namespace WMRA_Converter
 
         private void SaveOptionsButton_Click(object sender, EventArgs e)
         {
-            try
-            {
-                LoadColumnOptions();
-                _options.CheckOptions();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, @"Attenzione", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-            
+            GetOptions();                       
             _options.Save();
         }
 
@@ -107,20 +93,24 @@ namespace WMRA_Converter
             }
         }
 
+        private void GetOptions()
+        {
+            try
+            {
+                LoadColumnOptions();
+                _options.CheckOptions();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, @"Attenzione", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+        }
+
         private void LoadOptionsButton_Click(object sender, EventArgs e)
         {
             _options.Load();
             LoadScreenOptions();
-        }
-
-        private void FromSheetUpDown_ValueChanged(object sender, EventArgs e)
-        {
-            _options.FromSheetNumber = Convert.ToInt32(FromSheetUpDown.Value);
-        }
-
-        private void ToSheetUpDown_ValueChanged(object sender, EventArgs e)
-        {
-            _options.ToSheetNumber = Convert.ToInt32(ToSheetUpDown.Value);
         }
 
         private void FromRowUpDown_ValueChanged(object sender, EventArgs e)
@@ -161,6 +151,13 @@ namespace WMRA_Converter
 
                 columnDataControl.Top -= ColumnDataControlHeigth;
             }
+        }
+
+        private void ExecuteButton_Click(object sender, EventArgs e)
+        {
+            GetOptions();
+            Core core = new Core(_options);
+            core.Process();
         }
     }
 }
