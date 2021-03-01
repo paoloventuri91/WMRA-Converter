@@ -23,6 +23,11 @@ namespace WMRA_Converter
         public WmraConverter()
         {
             InitializeComponent();
+            ColumnControlPanel.AutoScroll = false;
+            ColumnControlPanel.HorizontalScroll.Enabled = false;
+            ColumnControlPanel.HorizontalScroll.Visible = false;
+            ColumnControlPanel.HorizontalScroll.Maximum = 0;
+            ColumnControlPanel.AutoScroll = true;
             _options = new ConverterOptions();
             _columnDataControls = new List<ColumnDataControl>();
         }
