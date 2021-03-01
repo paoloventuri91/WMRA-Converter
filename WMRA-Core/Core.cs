@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using WMRA_Core.CsvColums;
 
 namespace WMRA_Core
 {
@@ -22,9 +23,10 @@ namespace WMRA_Core
         public void Process()
         {
             ReadCsvFile();
+            AdjustData();
             ExportCsv();
         }
-
+        
         #endregion
 
         #region Private Methods
@@ -68,6 +70,18 @@ namespace WMRA_Core
                 {
                     writetext.WriteLine(outputRow);
                 }
+            }
+        }
+
+        private void AdjustData()
+        {
+            _outputRows = _outputRows.OrderBy(o => o.Time).ToList();
+            
+            var position = 1;
+            foreach (var outputRow in _outputRows)
+            {
+                outputRow.Position = new Position(position);
+                position++;
             }
         }
 

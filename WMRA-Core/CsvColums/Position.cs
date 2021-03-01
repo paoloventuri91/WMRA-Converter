@@ -20,6 +20,11 @@ namespace WMRA_Core.CsvColums
         
         #endregion
 
+        public Position(Int32 position = 0)
+        {
+            RawValue = position.ToString();
+        }
+
         #region Overidden Methods
 
         public override string ToString()

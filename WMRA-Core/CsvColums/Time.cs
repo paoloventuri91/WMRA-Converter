@@ -3,22 +3,38 @@ using System.Globalization;
 
 namespace WMRA_Core.CsvColums
 {
-    public class Time : ICsvColumn
+    public class Time : ICsvColumn, IComparable
     {
         #region Fields
 
-        private TimeSpan _time = TimeSpan.MinValue;
+        private TimeSpan TimeValue { get; set; }
+
+        #endregion
+        
+        #region Properties
+        
+        public String RawValue
+        {
+            get => TimeValue == TimeSpan.MaxValue ? String.Empty : TimeValue.ToString("hh':'mm':'ss");
+            set => TimeValue = TimeSpan.TryParse(value, out var parsedValue) ? parsedValue : TimeSpan.MaxValue;
+        }
 
         #endregion
 
-        #region Properties
+        #region Public Methods
 
-        public String RawValue
+        public Int32 CompareTo(Object obj)
         {
-            get => _time == TimeSpan.MinValue ? String.Empty : _time.ToString("hh':'mm':'ss");
-            set => _time = TimeSpan.ParseExact(value, "h':'mm':'ss", CultureInfo.InvariantCulture);
-        }
+            var timeObj = (Time)obj;
 
+            if (TimeValue < timeObj.TimeValue)
+                return -1;
+
+            if (TimeValue > timeObj.TimeValue)
+                return 1;
+
+            return 0;
+        }
         #endregion
 
         #region Overidden Methods

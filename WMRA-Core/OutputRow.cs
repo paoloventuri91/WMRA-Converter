@@ -7,15 +7,15 @@ namespace WMRA_Core
     {
         #region Properties
 
-        private LastName LastName { get; set; } = new LastName();
-        private FirstName FirstName { get; set; } = new FirstName();
-        private MaidenName MaidenName { get; set; } = new MaidenName();
-        private DateOfBirth DateOfBirth { get; set; } = new DateOfBirth();
-        private YearOfBirth YearOfBirth { get; set; } = new YearOfBirth();
-        private Country Country { get; set; } = new Country();
-        private Category Category { get; set; } = new Category();
-        private Position Position { get; set; } = new Position();
-        private Time Time { get; set; } = new Time();
+        public LastName LastName { get; set; } = new LastName();
+        public FirstName FirstName { get; set; } = new FirstName();
+        public MaidenName MaidenName { get; set; } = new MaidenName();
+        public DateOfBirth DateOfBirth { get; set; } = new DateOfBirth();
+        public YearOfBirth YearOfBirth { get; set; } = new YearOfBirth();
+        public Country Country { get; set; } = new Country();
+        public Category Category { get; set; } = new Category();
+        public Position Position { get; set; } = new Position();
+        public Time Time { get; set; } = new Time();
 
         #endregion
 

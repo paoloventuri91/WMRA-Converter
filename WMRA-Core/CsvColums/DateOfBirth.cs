@@ -5,18 +5,14 @@ namespace WMRA_Core.CsvColums
 {
     public class DateOfBirth : ICsvColumn
     {
-        #region Fields
-
-        private DateTime _date = DateTime.MinValue;
-
-        #endregion
-
         #region Properties
 
+        public DateTime Date { get; set; } = DateTime.MinValue;
+        
         public String RawValue
         {
-            get => _date.ToString("dd/MM/yyyy");
-            set => _date = DateTime.Parse(value);
+            get => Date.ToString("dd/MM/yyyy");
+            set => Date = DateTime.Parse(value);
         }
         
         #endregion
