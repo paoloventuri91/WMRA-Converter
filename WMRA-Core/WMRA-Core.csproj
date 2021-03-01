@@ -57,7 +57,7 @@
     <Compile Include="CsvColums\FirstName.cs" />
     <Compile Include="CsvColums\LastName.cs" />
     <Compile Include="ICsvColumn.cs" />
-    <Compile Include="IOutputColumn.cs" />
+    <Compile Include="OutputRow.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Core.cs" />
   </ItemGroup>

@@ -2,30 +2,22 @@
 
 namespace WMRA_Core.CsvColums
 {
-    public class Category : ICsvColumn, IOutputColumn
+    public class Category : ICsvColumn
     {
         #region Fields
 
-        private const String HeaderConst = "Category";
-        private const String NameConst = "Categoria";
-
         private CategoryEnum _categoryEnum = CategoryEnum.None;
+
 
         #endregion
 
         #region Properties
-
-        public Int32 ColumnIndex { get; set; }
-
+        
         public String RawValue
         {
-            get => _categoryEnum.ToString().ToUpper();
+            get => _categoryEnum.ToString();
             set => _categoryEnum = ParseCategory(value);
         }
-        
-        public String Header => HeaderConst;
-
-        public String Name => NameConst;
 
         #endregion
 
@@ -41,6 +33,7 @@ namespace WMRA_Core.CsvColums
 
                 case "WOMEN":
                 case "W":
+                case "F":
                     return CategoryEnum.Women;
 
                 default:

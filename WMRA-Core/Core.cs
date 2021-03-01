@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace WMRA_Core
 {
@@ -11,7 +9,7 @@ namespace WMRA_Core
     {
         #region Fields
         private readonly ConverterOptions _options;
-        private Dictionary<CsvColumnType, List<String>> _cvsValues;
+        private List<OutputRow> _outputRows;
         #endregion
 
         public Core(ConverterOptions options)
@@ -23,20 +21,17 @@ namespace WMRA_Core
 
         public void Process()
         {
-            ReadCSVFile();
+            ReadCsvFile();
+            ExportCsv();
         }
 
         #endregion
 
         #region Private Methods
 
-        private void ReadCSVFile()
+        private void ReadCsvFile()
         {
-            _cvsValues = new Dictionary<CsvColumnType, List<String>>();
-
-            foreach (var column in _options.Columns)
-                _cvsValues.Add(column.Item2, new List<String>());
-
+            _outputRows = new List<OutputRow>();
             var rowCounter = 0;
 
             using (var reader = new StreamReader(_options.InputFile))
@@ -49,15 +44,31 @@ namespace WMRA_Core
                     if (_options.FromRow > rowCounter)
                         continue;
 
-                    var values = line.Split(new Char[] { ',', ';' });
+                    if (line == null)
+                        continue;
 
-                    foreach(var column in _options.Columns){
-                        _cvsValues[column.Item2].Add(values[column.Item1 - 1]);
-                    }
+                    var outputRow = new OutputRow();
+                    var values = line.Split(',', ';');
+
+                    foreach(var column in _options.Columns)
+                        outputRow.AddColumn(column.Item2, values[column.Item1 - 1]);
+
+                    _outputRows.Add(outputRow);
                 }
             }
+        }
 
-            _cvsValues.Count();
+        private void ExportCsv()
+        {
+            using (var writetext = new StreamWriter(_options.OutputFile))
+            {
+                writetext.WriteLine(new OutputRow().GetHeader());
+
+                foreach (var outputRow in _outputRows)
+                {
+                    writetext.WriteLine(outputRow);
+                }
+            }
         }
 
         #endregion

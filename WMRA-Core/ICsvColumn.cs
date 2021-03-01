@@ -6,12 +6,8 @@ namespace WMRA_Core
     {
         #region Properties
 
-        Int32 ColumnIndex { get; set; }
-
         String RawValue { get; set; }
 
-        String Name { get; }
-        
         #endregion
     }
 }

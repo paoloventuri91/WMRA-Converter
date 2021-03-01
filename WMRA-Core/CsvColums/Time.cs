@@ -3,12 +3,9 @@ using System.Globalization;
 
 namespace WMRA_Core.CsvColums
 {
-    public class Time : ICsvColumn, IOutputColumn
+    public class Time : ICsvColumn
     {
         #region Fields
-
-        private const String HeaderConst = "Time";
-        private const String NameConst = "Tempo";
 
         private TimeSpan _time = TimeSpan.MinValue;
 
@@ -16,17 +13,11 @@ namespace WMRA_Core.CsvColums
 
         #region Properties
 
-        public Int32 ColumnIndex { get; set; }
-
         public String RawValue
         {
-            get => _time.ToString("HH:mm:ss");
-            set => _time = TimeSpan.ParseExact(value, "HH:mm:ss", CultureInfo.InvariantCulture);
+            get => _time == TimeSpan.MinValue ? String.Empty : _time.ToString("hh':'mm':'ss");
+            set => _time = TimeSpan.ParseExact(value, "h':'mm':'ss", CultureInfo.InvariantCulture);
         }
-
-        public String Header => HeaderConst;
-
-        public String Name => NameConst;
 
         #endregion
 

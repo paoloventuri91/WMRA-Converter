@@ -2,24 +2,22 @@
 
 namespace WMRA_Core.CsvColums
 {
-    public class FirstName : ICsvColumn, IOutputColumn
+    public class FirstName : ICsvColumn
     {
         #region Fields
 
-        private const String HeaderConst = "First Name";
-        private const String NameConst = "Nome";
+        private String _firstName;
 
         #endregion
-        
+
         #region Properties
 
-        public Int32 ColumnIndex { get; set; }
+        public String RawValue
+        {
+            get => _firstName;
+            set => _firstName = System.Globalization.CultureInfo.CurrentCulture.TextInfo.ToTitleCase(value.ToLower());
 
-        public String RawValue { get; set; }
-
-        public String Header => HeaderConst;
-
-        public String Name => NameConst;
+        }
 
         #endregion
     }
